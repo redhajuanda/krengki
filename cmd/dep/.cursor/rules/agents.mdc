@@ -1,0 +1,6 @@
+---
+alwaysApply: true
+name: Rules for Agents
+---
+
+Always read @AGENTS.md before writing or editing any code in this project.
