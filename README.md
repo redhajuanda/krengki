@@ -4,7 +4,7 @@ CLI scaffolding tool. Currently supports creating Next.js projects via `npx crea
 
 ## How it works
 
-After `npx create-next-app` finishes, `krengki install`:
+`krengki install` resolves the stable Next.js scaffold tag before running `npx`: it uses `create-next-app@lts` when npm publishes that tag, otherwise it uses the newest stable `next-*` dist-tag below `latest` (for example, `next-15-3` while `latest` is Next.js 16). After `npx create-next-app` finishes, it:
 
 1. Copies all files from `cmd/dep/` into the project root (overwrites Next.js defaults on conflict)
 2. Creates `.agents/skills` and `.agents/commands` directories
@@ -58,7 +58,7 @@ krengki --version
 
 ### `krengki install <project-name>`
 
-Creates a new Next.js project using `npx create-next-app`.
+Creates a new Next.js project using the stable/LTS `create-next-app` tag instead of npm `latest`.
 
 ```bash
 krengki install my-app
@@ -72,7 +72,7 @@ krengki install my-app
 | `--javascript` | `false` | Use JavaScript instead of TypeScript |
 | `--tailwind` | `true` | Add Tailwind CSS |
 | `--eslint` | `false` | Add ESLint |
-| `--app` | `false` | Use App Router |
+| `--app` | `true` | Use App Router |
 | `--src-dir` | `false` | Use `src/` directory structure |
 | `--turbopack` | `false` | Enable Turbopack dev server |
 | `--import-alias` | `""` | Custom import alias (e.g. `@/*`) |
@@ -88,12 +88,12 @@ krengki install my-app
 
 Full setup:
 ```bash
-krengki install my-app --tailwind --eslint --app --src-dir --import-alias "@/*"
+krengki install my-app --tailwind --eslint --src-dir --import-alias "@/*"
 ```
 
 JavaScript project:
 ```bash
-krengki install my-app --javascript --tailwind --eslint --app
+krengki install my-app --javascript --tailwind --eslint
 ```
 
 Skip npm install:
